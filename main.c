@@ -411,13 +411,39 @@ void imprimirXMLCancelamentoSAT(void)
     
 }
 
-void abrirGavetaElgin(void)
-{
-    
+void abrirGavetaElgin(void) {
+
+    int retorno;
+
+    if (!conexaoOk()) {
+        return;
+    }
+
+    retorno = AbreGavetaElgin(1, 50, 50);
+
+    if (retorno == 0) {
+        printf("Gaveta (Elgin) aberta!\n");
+    } else {
+        printf("Erro ao abrir a gaveta. Codigo: %d\n", retorno);
+    }
+
 }
 
-void abrirGaveta(void)
-{
+void abrirGaveta(void) {
+
+    int retorno;
+
+    if (!conexaoOk()) {
+        return;
+    }
+
+    retorno = AbreGaveta(1, 5, 10);
+
+    if (retorno == 0) {
+        printf("Gaveta aberta!\n");
+    } else {
+        printf("Erro ao abrir a gaveta. Codigo: %d\n", retorno);
+    }
     
 }
 
