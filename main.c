@@ -444,11 +444,32 @@ void abrirGaveta(void) {
     } else {
         printf("Erro ao abrir a gaveta. Codigo: %d\n", retorno);
     }
-    
+
 }
 
-void emitirSinalSonoro(void)
-{
+void emitirSinalSonoro(void) {
+
+    int qtd;
+    int retorno;
+
+    if (!conexaoOk()) {
+        return;
+    }
+
+    qtd = lerInteiro("Quantos apitos (1 a 63)? ");
+
+    if (qtd < 1 || qtd > 63) {
+        printf("Quantidade invalida. Use um valor de 1 a 63.\n");
+        return;
+    }
+
+    retorno = SinalSonoro(qtd, 50, 5);
+
+    if (retorno == 0) {
+        printf("Sinal sonoro emitido!\n");
+    } else {
+        printf("Erro ao emitir sinal sonoro. Codigo: %d\n", retorno);
+    }
     
 }
 
