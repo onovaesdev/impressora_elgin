@@ -385,7 +385,29 @@ void imprimirXMLSAT(void) {
 
 void imprimirXMLCancelamentoSAT(void)
 {
+    char *dadosXML;
+    int retorno;
+
+    if (!conexaoOk()) {
+        return;
+    }
+
     /* le o arquivo XML (na raiz do projeto) para a memoria */
+    dadosXML = lerArquivo("CANC_SAT.xml");
+    if (dadosXML == NULL) {
+        printf("Nao foi possivel ler o CANC_SAT.xml\n");
+        return;
+    }
+
+    retorno = ImprimeXMLCancelamentoSAT(dadosXML, ASS_QRCODE, 0);
+    Corte(5);
+    free(dadosXML);
+
+    if (retorno == 0) {
+        printf("XML de cancelamento SAT impresso!\n");
+    } else {
+        printf("Erro ao imprimir cancelamento SAT. Codigo: %d\n", retorno);
+    }
     
 }
 
