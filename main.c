@@ -335,13 +335,51 @@ void imprimirQRCode(void)
 
 void imprimirCodigoBarras(void)
 {
-   
+   int retorno;
+
+    if (!conexaoOk()) {
+        return;
+    }
+
+    /* tipo 8 = CODE 128 (o texto comeca com {A), altura 100, largura 2,
+     * HRI 3 = numero acima e abaixo
+     */
+    retorno = ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
+
+    if (retorno == 0) {
+        printf("Codigo de barras impresso!\n");
+    } else {
+        printf("Erro ao imprimir codigo de barras. Codigo: %d\n", retorno);
+    }
+
+    Corte(5);
 }
 
-void imprimirXMLSAT(void)
-{
+void imprimirXMLSAT(void) {
+
+    char *dadosXML;
+    int retorno;
+
+    if (!conexaoOk()) {
+        return;
+    }
 
     /* le o arquivo XML (na raiz do projeto) para a memoria */
+    dadosXML = lerArquivo("XMLSAT.xml");
+    if (dadosXML == NULL) {
+        printf("Nao foi possivel ler o XMLSAT.xml\n");
+        return;
+    }
+
+    retorno = ImprimeXMLSAT(dadosXML, 0);
+    Corte(5);
+    free(dadosXML); /* devolve a memoria */
+
+    if (retorno == 0) {
+        printf("XML SAT impresso!\n");
+    } else {
+        printf("Erro ao imprimir XML SAT. Codigo: %d\n", retorno);
+    }
     
 }
 
