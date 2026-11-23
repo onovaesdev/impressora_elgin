@@ -287,9 +287,28 @@ void fecharConexao(void)
     
 }
 
-void imprimirTexto(void) 
-{
- 
+void imprimirTexto(void)  {
+
+    char texto[400];
+    int retorno;
+
+    if (!conexaoOk()) {
+        return;
+    }
+
+    capturarEntrada("Texto a imprimir: ", texto, sizeof(texto));
+
+    /* posicao 1 = centro, estilo 4, tamanho 0 = normal */
+    retorno = ImpressaoTexto(texto, 1, 4, 0);
+
+    if (retorno >= 0) {
+        printf("Texto impresso!\n");
+    } else {
+        printf("Erro ao imprimir. Codigo: %d\n", retorno);
+        return;
+    }
+
+    Corte(5);
 }
 
 
