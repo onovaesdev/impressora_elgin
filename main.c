@@ -314,7 +314,23 @@ void imprimirTexto(void)  {
 
 void imprimirQRCode(void)
 {
-    
+    char dados[200];
+    int retorno;
+
+    if (!conexaoOk()) {
+        return;
+    }
+
+    capturarEntrada("Conteudo do QR Code: ", dados, sizeof(dados));
+    retorno = ImpressaoQRCode(dados, 6, 4);
+
+    if (retorno == 0) {
+        printf("QR Code impresso!\n");
+    } else {
+        printf("Erro ao imprimir QR Code. Codigo: %d\n", retorno);
+    }
+
+    Corte(5);
 }
 
 void imprimirCodigoBarras(void)
