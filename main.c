@@ -470,7 +470,7 @@ void emitirSinalSonoro(void) {
     } else {
         printf("Erro ao emitir sinal sonoro. Codigo: %d\n", retorno);
     }
-    
+
 }
 
 void exibirMenu(void)
@@ -478,8 +478,18 @@ void exibirMenu(void)
     printf("\n*************************************************\n");
     printf("**************** MENU IMPRESSORA ****************\n");
     printf("*************************************************\n\n");
-
     printf("1  - Configurar Conexao\n");
+    printf("2  - Abrir Conexao\n");
+    printf("3  - Fechar Conexao\n");
+    printf("4  - Imprimir Texto\n");
+    printf("5  - Imprimir QR Code\n");
+    printf("6  - Imprimir Codigo de Barras\n");
+    printf("7  - Imprimir XML SAT\n");
+    printf("8  - Imprimir XML de Cancelamento SAT\n");
+    printf("9  - Abrir Gaveta (Elgin)\n");
+    printf("10 - Abrir Gaveta\n");
+    printf("11 - Sinal Sonoro\n");
+    printf("0  - Sair\n");
     printf("--------------------------------------\n");
 }
 
