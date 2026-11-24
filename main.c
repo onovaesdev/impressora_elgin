@@ -496,6 +496,7 @@ void exibirMenu(void)
 /* ===================== Programa principal ===================== */
 
 int main(void) {
+
     int opcao = -1;
 
     if (!carregarDLL()) {
@@ -503,12 +504,50 @@ int main(void) {
         return 1;
     }
 
+    if (!fazerLogin()) {
+        printf("Acesso negado.\n");
+        FreeLibrary(dll);
+        return 1;
+    }
+
     while (opcao != 0) {
         exibirMenu();
         opcao = lerInteiro("\nDigite a opcao desejada: ");
 
+        if (opcao == 1) {
+            configurarConexao();
+        } else if (opcao == 2) {
+            abrirConexao();
+        } else if (opcao == 3) {
+            fecharConexao();
+        } else if (opcao == 4) {
+            imprimirTexto();
+        } else if (opcao == 5) {
+            imprimirQRCode();
+        } else if (opcao == 6) {
+            imprimirCodigoBarras();
+        } else if (opcao == 7) {
+            imprimirXMLSAT();
+        } else if (opcao == 8) {
+            imprimirXMLCancelamentoSAT();
+        } else if (opcao == 9) {
+            abrirGavetaElgin();
+        } else if (opcao == 10) {
+            abrirGaveta();
+        } else if (opcao == 11) {
+            emitirSinalSonoro();
+        } else if (opcao == 0) {
+            /* ao sair, fecha a conexao se ela ainda estiver aberta */
+            if (conexaoAberta) {
+                fecharConexao();
+            }
+            printf("Encerrando o programa.\n");
+        } else {
+            printf("Opcao invalida.\n");
+        }
+    }
 
     FreeLibrary(dll);
     return 0;
-}
+
 }
